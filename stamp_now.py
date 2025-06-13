@@ -1,19 +1,17 @@
 import os, re, json, datetime
 from notion_client import Client
 
-# 1️⃣ Collect any secret whose name looks like CRED_<n>
+# Accept ANY suffix after "CRED_"
 creds = []
 for key, val in os.environ.items():
-    m = re.match(r"CRED_(\d+)$", key)
-    if m:
+    if key.startswith("CRED_"):
         try:
             creds.append(json.loads(val))
         except json.JSONDecodeError:
-            print(f"⚠️  Secret {key} contains invalid JSON; skipping.")
+            print(f"⚠️  Secret {key} has invalid JSON; skipping.")
 
 if not creds:
-    print("❌  No CRED_n secrets found. Exiting.")
-    raise SystemExit(1)
+    print("❌  No CRED_* secrets found. Exiting."); raise SystemExit(1)
 
 now_iso = datetime.datetime.utcnow().isoformat()
 
