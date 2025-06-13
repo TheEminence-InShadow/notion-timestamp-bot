@@ -25,5 +25,5 @@ jobs:
         env:
           # one line per CRED_* secret you create
           CRED_MAIN_NOTION_ACCOUNT_ARCHIVE: ${{ secrets.CRED_MAIN_NOTION_ACCOUNT_ARCHIVE }}
-          CRED_TRIAL_ACCOUNT:               ${{ secrets.CRED_TRIAL_ACCOUNT }}
+          CRED_SCHOOL_NOTION_ACCOUNT_ARCHIVE: ${{ secrets.CRED_SCHOOL_NOTION_ACCOUNT_ARCHIVE }}
           # add more lines here when you add more CRED_* secrets
