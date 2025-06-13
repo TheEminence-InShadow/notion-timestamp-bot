@@ -1,20 +1,29 @@
 name: Stamp Notion dates
 
 on:
+  # every 10 minutes
   schedule:
-    - cron:  '*/10 * * * *'     # every 10 minutes
+    - cron: '*/10 * * * *'
+  # allow manual runs
   workflow_dispatch:
 
 jobs:
   run:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+
       - run: pip install -r requirements.txt
-      - run: python stamp_now.py
+
+      - name: Run timestamp bot
+        run: python stamp_now.py
         env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          DATABASE_ID:  ${{ secrets.DATABASE_ID }}
+          # one line per CRED_* secret you create
+          CRED_MAIN_NOTION_ACCOUNT_ARCHIVE: ${{ secrets.CRED_MAIN_NOTION_ACCOUNT_ARCHIVE }}
+          CRED_TRIAL_ACCOUNT:               ${{ secrets.CRED_TRIAL_ACCOUNT }}
+          # add more lines here when you add more CRED_* secrets
