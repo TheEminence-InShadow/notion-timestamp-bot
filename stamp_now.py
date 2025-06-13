@@ -1,23 +1,36 @@
-import os, datetime
+import os, json, datetime, sys
 from notion_client import Client
 
-TOKEN = os.getenv("NOTION_TOKEN")
-DB_ID = os.getenv("DATABASE_ID")
-DATE_PROP = "Date Archived"           # change if your column is named differently
+# 1️⃣  Load JSON string from the new secret
+raw_creds = os.getenv("CREDENTIALS")
+if not raw_creds:
+    print("❌  CREDENTIALS secret is missing"); sys.exit(1)
 
-now = datetime.datetime.utcnow().isoformat()
-notion = Client(auth=TOKEN)
+try:
+    CREDS = json.loads(raw_creds)
+except json.JSONDecodeError as e:
+    print("❌  CREDENTIALS secret is not valid JSON:", e); sys.exit(1)
 
-rows = notion.databases.query(
-    **{
-        "database_id": DB_ID,
-        "filter": {"property": DATE_PROP, "date": {"is_empty": True}},
-    }
-)["results"]
+now_iso = datetime.datetime.utcnow().isoformat()
 
-for r in rows:
-    notion.pages.update(
-        page_id=r["id"],
-        properties={DATE_PROP: {"date": {"start": now}}},
-    )
-    print("Stamped", r["id"])
+def stamp_database(token: str, db_id: str, prop: str):
+    notion = Client(auth=token)
+    try:
+        pages = notion.databases.query(
+            **{
+                "database_id": db_id,
+                "filter": {"property": prop, "date": {"is_empty": True}},
+            }
+        )["results"]
+    except Exception as e:
+        print(f"⚠️  Skipping db {db_id[:8]}… — {e}")
+        return
+    for p in pages:
+        notion.pages.update(
+            page_id=p["id"],
+            properties={prop: {"date": {"start": now_iso}}},
+        )
+        print("✅  Stamped", p["id"], "in DB", db_id[:8])
+
+for entry in CREDS:
+    stamp_database(entry["token"], entry["db_id"], entry["date_prop"])
