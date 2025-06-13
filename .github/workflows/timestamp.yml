@@ -1,0 +1,20 @@
+name: Stamp Notion dates
+
+on:
+  schedule:
+    - cron:  '*/10 * * * *'     # every 10 minutes
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: pip install -r requirements.txt
+      - run: python stamp_now.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          DATABASE_ID:  ${{ secrets.DATABASE_ID }}
