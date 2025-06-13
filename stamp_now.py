@@ -3,7 +3,7 @@ from notion_client import Client
 
 TOKEN = os.getenv("NOTION_TOKEN")
 DB_ID = os.getenv("DATABASE_ID")
-DATE_PROP = "Archived Date"           # change if your column is named differently
+DATE_PROP = "Date Archived"           # change if your column is named differently
 
 now = datetime.datetime.utcnow().isoformat()
 notion = Client(auth=TOKEN)
