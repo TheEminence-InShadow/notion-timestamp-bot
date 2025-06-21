@@ -46,7 +46,7 @@ JSON **keys** (all required):
 
 ## ➕ Adding a new database
 
-1. In Notion → **Create / reuse** an internal integration → copy its *token*.
+1. In Notion → **Create / reuse** an internal integration (Name: Auto-Timestamp Bot) → copy its *token*.
 2. Share the target database with that integration (**Share → Add connections → Can edit**).
 3. Copy the DB ID (first 32 chars of the page URL).
 4. Repo → **Settings → Secrets → Actions → New secret**
