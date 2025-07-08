@@ -60,7 +60,7 @@ JSON **keys** (all required):
      }
      ```
 5. Save the secret.
-6. Go to and edit the timestamp.yml file `(.github/workflows>timestamp.yml)`, then add the secret's name from step 4 at the last/bottom line.
+6. Go to and edit the timestamp.yml file `(.github/workflows > timestamp.yml)`, then add the secret's name from step 4 at the last/bottom line.
    
    * **Format:**
      ```json
