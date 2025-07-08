@@ -46,7 +46,7 @@ JSON **keys** (all required):
 
 1. In Notion → **Create / reuse** an internal integration (Name: Auto-Timestamp Bot) → copy its *token*.
 2. Configure the integration: Go to "Access" tab and select the pages you want to give it access to (the pages with the database)
-3. Copy the database ID (first 32 chars of the page URL): Go to the actual database, click "Share", click "Copy link", get the numbers in between `https://www.notion.so/` and `?v` `(https://www.notion.so/[copy the numbers here]?v)`
+3. Copy the database ID (first 32 chars of the page URL): Go to the actual database, click "Share", click "Copy link", get the numbers in between `https://www.notion.so/` and `?v` `(Basically: https://www.notion.so/[copy the numbers here]?v)`
 4. Repo → **Settings → Secrets → Actions → New secret**
 
    * **Name:** `CRED_<whatever>` (must start with `CRED_`)
