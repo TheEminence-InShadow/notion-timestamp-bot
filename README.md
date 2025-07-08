@@ -60,8 +60,13 @@ JSON **keys** (all required):
      }
      ```
 5. Save the secret.
-6. Go to and edit the timestamp.yml file (.github/workflows>timestamp.yml), then add the secret's name from step 4 at the last/bottom line. Format: ```json Paste_The_Secret_Name_Here: ${{ secrets.Paste_The_Secret_Name_Here }}```
-7. (Optional) **Actions → Stamp Notion dates → Run workflow** to test instantly.
+6. Go to and edit the timestamp.yml file (.github/workflows>timestamp.yml), then add the secret's name from step 4 at the last/bottom line.
+   
+   * **Format:**
+     ```json
+     Paste_The_Secret_Name_Here: ${{ secrets.Paste_The_Secret_Name_Here }}
+     ```
+9. (Optional) **Actions → Stamp Notion dates → Run workflow** to test instantly.
 
 ---
 
