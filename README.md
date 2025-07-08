@@ -53,7 +53,6 @@ JSON **keys** (all required):
    * **Value:**
 
      ```json
-     {"token":"secret_...","db_id":"...","prop":"Date Archived"}
      {
        "token":"integration_token_from_step_1",
        "db_id":"data_base_id_from_step_3",
