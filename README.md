@@ -3,7 +3,6 @@ For automating my Notion Archive page. That way, I can simply drag and drop page
 
 Below is a documentation of everything you’re likely to forget later: how the bot works, how to add/remove databases, change the schedule, and common troubleshooting steps.
 
-````markdown
 # Notion-Timestamp-Bot  
 Automatically timestamps pages dropped into one (or many) Notion databases – runs 24 / 7 via GitHub Actions.
 
@@ -15,7 +14,6 @@ Automatically timestamps pages dropped into one (or many) Notion databases – r
 3. Each secret contains a JSON blob:  
    ```json
    {"token":"secret_xxx","db_id":"abcd1234…","prop":"Date Archived"}
-````
 
 4. For every credential found, it:
 
