@@ -45,8 +45,8 @@ JSON **keys** (all required):
 ## ➕ Adding a new database
 
 1. In Notion → **Create / reuse** an internal integration (Name: Auto-Timestamp Bot) → copy its *token*.
-2. Share the target database with that integration (**Share → Add connections → Can edit**).
-3. Copy the DB ID (first 32 chars of the page URL).
+2. Configure the integration: Go to "Access" tab and select the pages you want to give it access to (the pages with the database)
+3. Copy the database ID (first 32 chars of the page URL): Go to the actual database, click "Share", click "Copy link", get the numbers in between "https://www.notion.so/" and "?v" (https://www.notion.so/[copy the numbers here]?v)
 4. Repo → **Settings → Secrets → Actions → New secret**
 
    * **Name:** `CRED_<whatever>` (must start with `CRED_`)
@@ -54,9 +54,15 @@ JSON **keys** (all required):
 
      ```json
      {"token":"secret_...","db_id":"...","prop":"Date Archived"}
+     {
+       "token":"integration_token_from_step_1",
+       "db_id":"data_base_id_from_step_3",
+       "prop":"Date Archived"
+     }
      ```
-5. Commit nothing! Just save the secret.
-6. (Optional) **Actions → Stamp Notion dates → Run workflow** to test instantly.
+5. Save the secret.
+6. Go to the timestamp.yml file (.github/workflows>timestamp.yml), add the secret's name from step 4. Format: 
+7. (Optional) **Actions → Stamp Notion dates → Run workflow** to test instantly.
 
 ---
 
